@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form id="registerForm">
+        <div>
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+        </div>
+        <div>
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the input values
+            var newUsername = document.getElementById('newUsername').value.trim();
+            var newPassword = document.getElementById('newPassword').value.trim();
+
+            // Check if the username already exists in localStorage
+            if (localStorage.getItem(newUsername)) {
+                alert('Username already exists. Please choose another username.');
+                return;
+            }
+
+            // Save the new user data to localStorage (for demonstration purposes)
+            localStorage.setItem(newUsername, newPassword);
+
+            alert('Registration successful! You can now log in with your new account.');
+            // You can redirect to a login page or do any other action here
+
+            // Clear the form after registration
+            document.getElementById('registerForm').reset();
+        });
+    </script>
+</body>
+</html>
